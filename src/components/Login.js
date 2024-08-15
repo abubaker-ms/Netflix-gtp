@@ -5,14 +5,20 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
+import { updateProfile } from "firebase/auth";
+
 
 function Login() {
+
+  const navigate=useNavigate();
 
   const [isformValid,setisformValid]=useState();
   const [issignup,setissignup]=useState(false);
   const [isfirbasevalidation,setisfirbasevalidation]=useState();
   const Emailref = useRef(null);
   const PasswordRef=useRef(null);
+  const nameRef=useRef(null);
 
   const handleEmailChange=(e)=>{
     e.preventDefault();
@@ -22,6 +28,12 @@ function Login() {
   const handlePasswordChange=(e)=>{ 
     console.log(PasswordRef.current.value)  
   }
+
+  const handleNameChange=(e)=>{
+    e.preventDefault();
+    console.log(nameRef.current.value)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let validationResult = checkFormData(Emailref.current.value, PasswordRef.current.value);
@@ -32,10 +44,19 @@ function Login() {
         createUserWithEmailAndPassword(auth, Emailref.current.value, PasswordRef.current.value)
           .then((userCredential) => {
             // Signed up 
+            updateProfile(auth.currentUser, {
+              displayName: nameRef.current.value, photoURL: "https://avatars.githubusercontent.com/u/56525313?s=96&v=4"
+            }).then(() => {
+              // Profile updated!
+              // ...
+            }).catch((error) => {
+              // An error occurred
+              // ...
+            }); 
             const user = userCredential.user;
             setisfirbasevalidation("");
             console.log(user, "user");
-
+            navigate("/browse")
             // ...
           })
           .catch((error) => {
@@ -45,6 +66,7 @@ function Login() {
             let errormsg=errorCode + errorMessage;
             setisfirbasevalidation(errormsg);
           });
+        
       }
       signInWithEmailAndPassword(auth, Emailref.current.value, PasswordRef.current.value)
         .then((userCredential) => {
@@ -53,6 +75,7 @@ function Login() {
           // ...
           setisfirbasevalidation("");
           console.log(user, "user");
+          navigate("/browse")
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -79,6 +102,8 @@ function Login() {
 
      <form className='absolute p-12 bg-black bg-opacity-80 w-3/12 top-40 mx-auto left-0 right-0 '>
      <h1 className='text-2xl font-bold text-white'>{issignup?"SignUp":"Sign In"}</h1>
+
+     {issignup && <input type="text" placeholder="Username" className="w-full p-2 my-2 bg-gray-600" onChange={handleNameChange} ref={nameRef}/>}
 
       <input type="email" 
       placeholder="Enter Email" 
