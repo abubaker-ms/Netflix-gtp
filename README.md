@@ -14,6 +14,19 @@
  - Created redux store with userslice
  - Update profile with username
  - fetch movie from TMDB 
+ - bugfix : profile name and image
+ - bugfix : user redirect based on login/logout
+ - Unsubscribed to the onAuthSatate change call back in useeefect
+ - Registar TMDB 
+ - get data from docs
+ - make call and store in store
+ - craete movieSlice
+ - update data with movieslice
+ - planning for main and seconday container(nowPlayingMovies and recommeneded movies)
+ - fetch trailer data video
+ - update store with trailer data
+ - Embeded video and make it autoplay and mute
+ - add tailwind classes to make it awsome
 
  # forms
  - if our forms are big need many validation ? use library - formic

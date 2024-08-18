@@ -1,18 +1,13 @@
 import React, { useRef, useState } from 'react'
-import Header from './Header'
 import { checkFormData } from '../utils/validate';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
 import { updateProfile } from "firebase/auth";
 
 
 function Login() {
-
-  const navigate=useNavigate();
-
   const [isformValid,setisformValid]=useState();
   const [issignup,setissignup]=useState(false);
   const [isfirbasevalidation,setisfirbasevalidation]=useState();
@@ -22,22 +17,22 @@ function Login() {
 
   const handleEmailChange=(e)=>{
     e.preventDefault();
-    console.log(Emailref.current.value)
+    // console.log(Emailref.current.value)
   }
 
   const handlePasswordChange=(e)=>{ 
-    console.log(PasswordRef.current.value)  
+    // console.log(PasswordRef.current.value)  
   }
 
   const handleNameChange=(e)=>{
     e.preventDefault();
-    console.log(nameRef.current.value)
+    // console.log(nameRef.current.value)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let validationResult = checkFormData(Emailref.current.value, PasswordRef.current.value);
-    console.log(validationResult, "validationResult");
+    // console.log(validationResult, "validationResult");
     if (validationResult.isEmailValid && validationResult.isPasswordValid) {
       setisformValid(true);
       if (issignup) {
@@ -55,14 +50,14 @@ function Login() {
             }); 
             const user = userCredential.user;
             setisfirbasevalidation("");
-            console.log(user, "user");
-            navigate("/browse")
+            // console.log(user, "user");
+            // navigate("/browse")
             // ...
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
+            // console.log(errorCode, errorMessage);
             let errormsg=errorCode + errorMessage;
             setisfirbasevalidation(errormsg);
           });
@@ -74,8 +69,8 @@ function Login() {
           const user = userCredential.user;
           // ...
           setisfirbasevalidation("");
-          console.log(user, "user");
-          navigate("/browse")
+          // console.log(user, "user");
+          // navigate("/browse")
         })
         .catch((error) => {
           const errorCode = error.code;

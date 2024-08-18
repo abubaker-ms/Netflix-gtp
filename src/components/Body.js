@@ -1,5 +1,5 @@
 
-import { BrowserRouter, createBrowserRouter,Outlet,RouterProvider } from 'react-router-dom';
+import { BrowserRouter, createBrowserRouter,Navigate,Outlet,RouterProvider } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 
 import Login from './Login';
@@ -12,25 +12,7 @@ import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { useEffect } from 'react';
 
-function LayoutComponent() {
- const dispatch = useDispatch();
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        // const uid = user.uid;
-        const {uid,email,displayName,photoURL}=auth.currentUser;
-        dispatch(addUser({uid,email,displayName,photoURL}));
-        // ...
-      } else {
-        // User is signed out
-        // ...
-        dispatch(removeUser());
-      }
-    });
-  }
-  , []);
+function LayoutComponent() { 
 
   return (
     <div>
