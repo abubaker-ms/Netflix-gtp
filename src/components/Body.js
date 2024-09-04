@@ -7,10 +7,7 @@ import Browse from './Browse';
 import Header from './Header';
 import { Provider } from 'react-redux';
 import userStore from '../utils/userStore';
-import { auth } from '../utils/firebase';
-import { useDispatch } from 'react-redux';
-import { addUser, removeUser } from '../utils/userSlice';
-import { useEffect } from 'react';
+import GptSearch from './GptSearch';
 
 function LayoutComponent() { 
 
@@ -41,6 +38,10 @@ const router=createBrowserRouter([
     {
       path:'/browse',
       element:<Browse />
+    },
+    {
+      path:'/gptSearch',
+      element:<GptSearch />
     }
    ] 
   }

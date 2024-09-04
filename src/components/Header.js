@@ -7,6 +7,7 @@ import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { addUser } from '../utils/userSlice';
 import { onAuthStateChanged } from "firebase/auth";
+import Gpt from './Gpt';
 
 function Header() {
   const navigate = useNavigate();
@@ -63,12 +64,13 @@ function Header() {
       </div>
 
       <div className='m-3 flex py-2 '>
-        {
+        {/* {
           user ?
           <img className='h-8' src={`${user.photoURL}`} alt="user" />
           :
           ""
-        }
+        } */}
+        {user && <Gpt/>}
         {user && <h1 className='font-bold px-6 my-2 text-center text-white'>{user.displayName}</h1>}
         {<button className="px-4 py-2 font-bold text-white bg-red-600 rounded top-10 hover:bg-red-600" onClick={handleSignButton}>{user?"SignOut":"SignIn"}</button>}
 
