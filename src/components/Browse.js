@@ -2,6 +2,7 @@ import useNowPlayingMovies from '../hooks/useNowPlayingMovies';
 import { useSelector } from 'react-redux';
 import NowPlayingTrailer from './NowPlayingTrailer';
 import NowPlayingTitle from './NowPlayingTitle';
+import SecondayContainer from './SecondayContainer';
 function Browse() {
 
 useNowPlayingMovies();
@@ -16,6 +17,7 @@ if(!nowPlayingMovieId){
     <div>
           <NowPlayingTitle movieInfo={[movieTitle,movieOverview]}/>
           <NowPlayingTrailer id={nowPlayingMovieId}/>
+          <SecondayContainer />
     </div>
 
   )

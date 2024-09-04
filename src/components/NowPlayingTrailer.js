@@ -9,7 +9,7 @@ function NowPlayingTrailer(nowPlayingMovieId) {
 
   return (
     <div className='w-screen'>
-      <iframe className='w-screen aspect-video  top-0 left-0'
+      <iframe className='w-screen aspect-video'
       src={"https://www.youtube.com/embed/"+nowPlayingKey+"?si=o7GIvVgRXj2z0XK6?&autoplay=1&mute=1"} 
       title="YouTube video player"  
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 

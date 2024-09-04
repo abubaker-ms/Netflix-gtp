@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 function LayoutComponent() { 
 
   return (
-    <div>
+    <div className=''>
       <Header />
      
       <Outlet /> 
